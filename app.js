@@ -7,7 +7,7 @@ const { allowedNodeEnvironmentFlags } = require("process");
 
 
 
-const app= express();
+const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.get("/",function(req,res){
@@ -25,7 +25,7 @@ const unit = "metric";
 const url =" https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKey +"&units="+unit
 
 https.get(url,function(response){
-    console.log(response.statusCode);
+    // console.log(response.statusCode);
 
     response.on("data",function(data){
         const weatherData = JSON.parse(data);
@@ -33,7 +33,7 @@ https.get(url,function(response){
         const weatherDescription = weatherData.weather[0].description;
         const icon = weatherData.weather[0].icon
         const imageURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
-        console.log(weatherDescription);
+        // console.log(weatherDescription);
         res.write("<h1>The weather is currently "+ weatherDescription+"</h1>");
         res.write("<h1>The temp in "+query+" is " + temp +" Degrees celcius</h1>");
         res.write("<img src="+ imageURL+">");
