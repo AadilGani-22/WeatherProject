@@ -4,6 +4,7 @@ const { copyFileSync } = require("fs");
 const https = require("https")
 const bodyParser = require("body-parser");
 const { allowedNodeEnvironmentFlags } = require("process");
+require("dotenv").config();
 
 
 
@@ -19,7 +20,7 @@ app.post("/",function(req,res){
     // console.log(req.body.cityName);
     const query = req.body.cityName;
 
-const apiKey = "7594262dd2a734796e64a833cb647f30";
+const apiKey = process.env.api_key;
 const unit = "metric";
 
 const url =" https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKey +"&units="+unit
@@ -44,7 +45,7 @@ https.get(url,function(response){
 })
 // const query = "London"
 
-// const apiKey = "7594262dd2a734796e64a833cb647f30";
+// const apiKey = "";
 // const unit = metric;
 
 // const url =" https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKey +"&units="+unit
